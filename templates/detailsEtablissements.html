@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    
+    <!-- start inner-banner -->
+    <section class="inner-banner">
+        <!-- <h1 class="font-weight-bold text-center">Results</h1> -->
+    </section>
+    <!-- end inner-banner -->
+    <!-- start contact -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="sec-title text-center mb-3" data-aos="fade-up" data-aos-duration="1000">
+                <span class="title">Infos sur l'etablissement</span>
+                <h2>{{etablissement.nom_etablissement}}</h2>
+                <div class="divider">
+                    <span class="fa fa-mortar-board"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class=" col-md-12">
+                    <div class="career-form p-5" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="border-line"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Localisation:</h4>
+                            </div>
+                            <div class="col-md-6">
+                               <span class="attribut">Région:</span>  {{etablissement.region}}<br/>
+                               <span class="attribut">Département:</span> {{etablissement.departement}}<br/>
+                               <span class="attribut">Commune:</span> {{etablissement.commune}}<br/>
+                               <span class="attribut">Adress:</span> {{etablissement.adresse}}<br/>
+                            </div> 
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Contact:</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="attribut">Email:</span> {{etablissement.email}}<br/>
+                                <span class="attribut">Telephone:</span> {{etablissement.telephone}}<br/>
+                                <span class="attribut">Site web:</span> {{etablissement.site_web}}<br/>
+                            
+                                
+                            </div> 
+                        </div>
+
+                        
+                        <!-- <hr/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Dipl:</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        DTS: {{formation.d_dts}} <br/>
+                                        BTS: {{formation.d_bts}} <br/>
+                                        BT: {{formation.d_bt}} <br/>
+                                        CS: {{formation.d_cs}} <br/>
+                                        BAC: {{formation.d_bac}} <br/>
+                                        Licence: {{formation.d_licence}} <br/>
+                                        
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        Master: {{formation.d_master}} <br/>
+                                        Doctorat: {{formation.d_doctorat}} <br/>
+                                        Attestation: {{formation.d_attestation}} <br/>
+                                        Certificat:{{formation.d_certificat}} <br/>
+                                        Autre:{{formation.d_autre}} <br/>
+                                    </div>
+                                </div>
+                                
+                            </div>  -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </section>
+    <!-- end contact -->
+
+    <section class="">
+        <div class="container">
+            <h4><span class="title">Formations disponible</span></h4>
+            {{formation.etablissement.nom_etablissement}}
+            
+            <div class="row px-3">
+                
+                    {% for f in formations %}
+                    <div class="col-md-4 mb-3">
+                        <a href="{% url 'detailsFormation' f.id %}">{{f.nom_formation}}</a>
+                    </div>
+                        
+                    {% endfor %}
+                
+            </div>
+            
+        </div>
+    </section>
+
+    
+    <!-- end result -->
+    <!-- start result showcase -->
+    <section class="result-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sec-title mb-3" data-aos="fade-up" data-aos-duration="1000">
+                        <span class="title">{{etablissement.nom_etablissement}}</span>
+                        <h2>Localisation de l'etablissement</h2>
+                        <div class="divider">
+                            <span class="fa fa-mortar-board"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class=""> 
+                        <div id="mapid2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end result showcase -->
+
+    <!-- <section class="result-list">
+        
+            <div class=""> 
+                <div id="mapid2"></div>
+            </div>
+            
+        </div>
+    </section> -->
+    
+
+<!-- ===============leaflet js============= -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script>
+    var maplatlng={{from_map|safe}}
+    console.log(maplatlng)
+    var mymap = L.map('mapid2').setView([maplatlng.lat, maplatlng.long], 10.4);
+    
+        var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+
+    OpenStreetMap_Mapnik.addTo(mymap);
+    var latLng = new L.LatLng(maplatlng.lat, maplatlng.long);
+    var marker = new L.Marker(latLng, {title: maplatlng.reg});
+    marker.bindPopup("")
+    
+    
+    mymap.addLayer(marker);
+
+
+    </script>
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

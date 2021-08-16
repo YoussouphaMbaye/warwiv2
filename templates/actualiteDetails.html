@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--Load the language-->
+{% load social_share %}
+{% load i18n %}
+
+    
+    <!-- start inner banner -->
+    <section class="inner-banner">
+        <h1 class="font-weight-bold text-center">Our Blog</h1>
+    </section>
+    <!-- end inner banner -->
+    <!-- start blog -->
+    <section class="blog-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog-img">
+                        <img src="../media/{{article.img_article}}" class="img-fluid" alt="Blog"/>
+                    </div>
+                    <div class="blog-post d-flex pt-3">
+                        <p class="mr-3"><i class="fa fa-calendar mr-1"></i>{% language 'fr' %} {{article.created_at|date:'d F Y'}} {% endlanguage %}</p>
+                        <!-- <p class="mr-3"><i class="fa fa-comments mr-1"></i> 10 comments</p> -->
+                    </div>
+                    <div class="blog-title">
+                        <h4 class="font-weight-bold mb-3">{{article.titre}}</h4>
+                    </div>
+                    <div class="blog-desc">
+                        {{article.contenu}}
+                    </div>
+                    
+                    <div class="share">
+                        <h6 class="text-uppercase font-weight-bold mb-3">Share</h6>
+                        <ul class="social-icon pl-0">
+                            <li>{% post_to_facebook object_or_url " " "fa fa-facebook-f" %}</li>
+                            <li>{% post_to_twitter " " object_or_url " "  "fa fa-twitter" %}</li>
+                            <!-- <li><a href="#" ><i class="fa fa-facebook-f"></i></a></li> -->
+                            
+                            <!-- <li><a href="#"><i class="fa fa-google-plus"></i></a></li> -->
+                            <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
+                            <!-- <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4">
+                    <div class="search-blog mb-4">
+                        <form>
+                            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                                       placeholder="Search">
+                                <div class="input-group-prepend border-0">
+                                    <div class="input-group-text theme-orange"><i class="fa fa-search"></i></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="recent-blog ">
+                        <h6 class="text-uppercase font-weight-bold mb-3">Articles Recents</h6>
+                        {% for ar_recents in articles_recents %}
+                        <div class="media">
+                            <img src="../media/{{ar_recents.img_article}}" alt="John Doe" class="mr-3">
+                            <div class="media-body">
+                                <p class="font-weight-bold mb-2">{{ar_recents.titre}}</p>
+                                <p>Publier le {% language 'fr' %} {{ar_recents.created_at|date:'d F Y'}} {% endlanguage %}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- end blog -->
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

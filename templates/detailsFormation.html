@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    
+    <!-- start inner-banner -->
+    <section class="inner-banner">
+        <!-- <h1 class="font-weight-bold text-center">Results</h1> -->
+    </section>
+    <!-- end inner-banner -->
+    <!-- start contact -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="sec-title text-center mb-3" data-aos="fade-up" data-aos-duration="1000">
+                <span class="title">Infos sur la formation</span>
+                <h2>{{formation.nom_formation}}</h2>
+                <div class="divider">
+                    <span class="fa fa-mortar-board"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class=" col-md-12">
+                    <div class="career-form p-5" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="border-line"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Intitulé de la formation:</h4>
+                            </div>
+                            <div class="col-md-6">
+                                {{formation.nom_formation}}
+                            </div> 
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Niveau requis:</h4>
+                            </div>
+                            <div class="col-md-6">
+                                {{formation.niveau_requis}}
+                            </div> 
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Durée:</h4>
+                            </div>
+                            <div class="col-md-6">
+                                {{formation.duree}}
+                            </div> 
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Métiers:</h4>
+                            </div>
+                            <div class="col-md-6">
+                                {{formation.metier}}
+                            </div> 
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Conditions d'accès:</h4>
+                            </div>
+                            <div class="col-md-6">
+                               {% if formation.c_concours %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Concours<br/>
+                                {% if formation.c_dossier %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Dossier<br/>
+                                {% if formation.c_entretien %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Entretien<br/>
+                                {% if formation.c_autre %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Autre<br/>
+                            </div> 
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Diplômes délivrés:</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                       {% if formation.d_dts %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %} &nbsp; DTS<br/>
+                                        {% if formation.d_bts %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %} &nbsp; BTS<br/>
+                                        {% if formation.d_bt %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %} &nbsp; BT<br/>
+                                        {% if formation.d_cs %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; CS<br/>
+                                        {% if formation.d_bac %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; BAC<br/>
+                                        {% if formation.d_licence %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Licence<br/>
+                                        
+
+                                    </div>
+                                    <div class="col-md-6">
+                                       {% if formation.d_master %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Master<br/> 
+                                        {% if formation.d_doctorat %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Doctorat<br/>
+                                        {% if formation.d_attestation %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Attestation<br/>
+                                        {% if formation.d_certificat %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Certificat<br/>
+                                        {% if formation.d_autre %} <i class="fa fa-check-circle-o" aria-hidden="true" style="color:green"></i>{%else%}<i class="fa fa-check-circle-o" style="color:red" aria-hidden="true"></i>{% endif %}&nbsp; Autre
+                                    </div>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </section>
+    <!-- end contact -->
+
+    <section class="">
+        <div class="container">
+            <h4><span class="title">Etablissement fournissant la formation</span></h4>
+            <a href="{% url 'detailsEtablissement' formation.etablissement.id %}">{{formation.etablissement.nom_etablissement}}</a>
+            
+        </div>
+    </section>
+
+    
+    <!-- end result -->
+    <!-- start result showcase -->
+        {% include 'aller_carte.html' %}
+    <!-- end result showcase -->
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

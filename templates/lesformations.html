@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    
+    <!-- start inner-banner -->
+    <section class="inner-banner">
+        <!-- <h1 class="font-weight-bold text-center">Results</h1> -->
+    </section>
+    <!-- end inner-banner -->
+    <!-- start search result -->
+    <section class="result">
+        <div class="container">
+            <div class="sec-title text-center mb-3" data-aos="fade-up" data-aos-duration="1000">
+                <span class="title">Formations & Diplomes</span>
+                <h2>Liste des formations</h2>
+                <div class="divider">
+                    <span class="fa fa-mortar-board"></span>
+                </div>
+            </div>
+            <hr/>
+            <div class="row px-3">
+                <div class="row pl-5">
+                    {% for f in formations %}
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'detailsFormation' f.id %}">{{f.nom_formation}}</a>
+                    </div>
+                        
+                    {% endfor %}
+                </div>
+                <div class="row justify-content-center w-100 mt-3" style="overflow: auto;">
+
+                    <nav aria-label="..." class="float-right">
+                        <ul class="pagination">
+                            {% if formations.has_previous %}
+                            <li class="page-item disabled">
+                                <a href="?page={{formations.previous_page_number}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}"><span class="page-link">Previous</span></a>
+                            </li>
+                            {% endif %}
+                            {% for p in formations.paginator.page_range %}
+                            <li class="page-item {% ifequal formations.number p %} active {% endifequal %}">
+                                <a class="page-link" href="?page={{p}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}">{{p}}</a>
+                                {% ifequal formations.number p %}
+                                <span class="sr-only">(current)</span>
+                                {% endifequal %}
+                
+                            </li>
+                            {% endfor %}
+                
+                            {% if formations.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{formations.next_page_number}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}">Next</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                
+                
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- end search result -->
+    
+    <!-- start result showcase -->
+    {% include 'aller_carte.html' %}
+    <!-- end result showcase -->
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

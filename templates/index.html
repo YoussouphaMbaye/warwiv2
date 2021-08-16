@@ -1,0 +1,630 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+    
+    <!-- start slider -->
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'assets/mesimages/slide1.jpg' %}" alt="education" class="img-fluid">
+                <div class="carousel-caption animated fadeInLeft delay-0.5s">
+                    <h1 class="font-weight-bold">L'enseignement agricole au Sénégal.</h1>
+                    <h6 class="banner-desc">We had such a great time in Education</h6>
+                    <a href="javascript:" class="theme-orange btn mt-3 apply-now">Trouver une formation</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'assets/mesimages/slide4.jpg'%}" alt="education" class="img-fluid">
+                <div class="carousel-caption animated fadeInUp delay-0.5s">
+                    <h1 class="font-weight-bold">Formez vous aux métiers de l'agriculture.</h1>
+                    <h6 class="banner-desc">We had such a great time in Education</h6>
+                    <a href="javascript:" class="theme-orange btn mt-3 apply-now">Trouver une formation</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'assets/mesimages/slide3.jpg'%}" alt="education" class="img-fluid">
+                <div class="carousel-caption animated fadeInDown delay-0.5s">
+                    <h1 class="font-weight-bold">Une panoplie de formations  et de diplômes à votre disposition.</h1>
+                    <h6 class="banner-desc">We had such a great time in Education</h6>
+                    <a href="javascript:" class="theme-orange btn mt-3 apply-now">Apply Now</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'assets/mesimages/slide5.jpg'%}" alt="education" class="img-fluid">
+                <div class=" partie-titre carousel-caption animated zoomIn delay-0.5s">
+                    <h1 class="font-weight-bold">Donnez-vous la chance de pouvoir évoluer dans l’agriculture.</h1>
+                    <h6 class="banner-desc">We had such a great time in Education</h6>
+                    <a href="javascript:" class="theme-orange btn mt-3 apply-now">Trouver une formation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end slider -->
+    <!-- start counter -->
+    <section class="counter-section">
+        <div class="container">
+            <div class="counter-box">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter" data-aos="fade-up" data-aos-duration="550">
+                            <div class="border-line"></div>
+                            <div class="counter-img">
+                                <img src="{% static 'assets/images/icons/schoolB.png' %}" class="img-fluid" alt=teacher>
+                            </div>
+                            <h5 class="count-text mt-2">Etablissements</h5>
+                            <h2 class="timer count-title count-number" data-to="{{nb_etablissement}}" data-speed="1500"></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-3" data-aos="fade-up" data-aos-duration="550">
+                            <div class="border-line"></div>
+                            <div class="counter-img">
+                                
+                                <img src="{% static 'assets/images/icons/formation.png' %}" class="img-fluid" alt="classroom">
+                            </div>
+                            <h5 class="count-text mt-2">Formations</h5>
+                            <h2 class="timer count-title count-number" data-to="{{nb_formation}}" data-speed="1500"></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter mt-xl-0 mt-lg-0 mt-md-4 mt-sm-3 mt-3" data-aos="fade-up" data-aos-duration="550">
+                            <div class="border-line"></div>
+                            <div class="counter-img">
+                                <img src="{% static 'assets/images/icons/metierB.png' %}" class="img-fluid" alt="career">
+                            </div>
+                            <h5 class="count-text mt-2">Métiers</h5>
+                            <h2 class="timer count-title count-number" data-to="20" data-speed="1500"></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter mt-xl-0 mt-lg-0 mt-md-4 mt-sm-3 mt-3" data-aos="fade-up" data-aos-duration="550">
+                            <div class="border-line"></div>
+                            <div class="counter-img">
+                                <img src="{% static 'assets/images/icons/senegal.png' %}" class="img-fluid" alt="activity">
+                            </div>
+                            <h5 class="count-text mt-2">Région</h5>
+                            <h2 class="timer count-title count-number" data-to="14" data-speed="1500"></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- end counter -->
+    <!-- start about us -->
+    <section class="about-us" data-aos="fade-up" data-aos-duration="950">
+        <div class="container">
+            <div class="about-box pb-3">
+                <i class="fa fa-mortar-board"></i>
+            </div>
+            <h5 data-aos="fade-up" data-aos-duration="1050">La clé pour déverrouiller la porte dorée de la liberté.</h5>
+            <h2 class="font-weight-bold pb-3 px-5 mb-0" data-aos="fade-up" data-aos-duration="1050">Dans l'éducation, le naturel est le sol, l'instituteur est le laboureur, les raisonnements et les bons avis sont les semences.</h2>
+            <p class="bottom-line"></p>
+
+            <h5 class="pt-3">Proverbe latin</h5>
+            
+            <div class="button-box">
+                <a href="javascript:" class="left-btn">En savoir plus</a>
+                <a href="javascript:" class="right-btn">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+    <!-- end about us -->
+    
+    
+    
+    <!-- start contact us -->
+    <section class="contact-us mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contact-us-block">
+                    <div class="border-line"></div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 py-5">
+                            <h3 class="text-center font-weight-bold">Les Formations</h3>
+                            <div class="single-item">
+                                <div class="text-center py-4">
+                                    <img src="{% static 'assets/images/1.png'%}" class="img-fluid m-auto d-block" alt="Student">
+                                    <h5 class="mt-3 font-weight-bold">Horticulture</h5>
+                                    <h6>L'horticulture est l'art de cultiver les jardins, de pratiquer la culture des légumes, des fruits, des fleurs, des arbres ou des arbustes fruitiers et d'ornement. </h6>
+                                </div>
+                                <div class="text-center py-4">
+                                    <img src="{% static 'assets/images/2.png' %}" class="img-fluid m-auto d-block" alt="Student">
+                                    <h5 class="mt-3 font-weight-bold">Maraîchage</h5>
+                                    <h6>La culture de végétaux à usage alimentaire, de manière professionnelle.</h6>
+                                </div>
+                                <div class="text-center py-4">
+                                    <img src="assets/images/3.png" class="img-fluid m-auto d-block" alt="Student">
+                                    <h5 class="mt-3 font-weight-bold">Lisa Devis</h5>
+                                    <h6>Suffered are many variation of passages lorem availle there on alterati of some
+                                        form
+                                        by the injected for users.</h6>
+                                </div>
+                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button">
+                                    Previous
+                                </button>
+                                <button class="slick-next slick-arrow" aria-label="Next" type="button">Next
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-8 hidden-md">
+                            <div class="joinus-content theme-orange mx-5" data-aos="zoom-in" data-aos-duration="550">
+                                <p class="text-uppercase font-weight-bold mb-0">La formation adequat</p>
+                                <h2 class="font-weight-bold mb-3">Trouver une formation</h2>
+                                <form method="GET" action="{% url 'formations' %}">
+                                    {% csrf_token %}
+                                    <!--=====================ROW0====================-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="region">Région</label>
+                                                <select class="form-control" id="region" name="region">
+                                                    <option value="">Choisir la région</option>
+                                                    {% for r in regions %}
+                                                        <option value="{{r}}" {% if r == req_region %}selected="selected"{% endif %}>{{r}}</option>
+                                                        
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="departement"> Département</label>
+                                                <select name='departement'  class="form-control" name="departement">
+                                                    <option value="">Choisir le département</option>
+                                                    {% for d in departements %}
+                                                        <option value="{{d}}" {% if d == req_departement %}selected="selected"{% endif %}>
+                                                            {{d}}
+                                                        </option>
+                                                        
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--=====================END ROW0====================-->
+                                    <!--=====================ROW1====================-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="niveau_requis">Niveau requis</label>
+                                                <select class="form-control" id="niveau_requis" name="niveau_requis">
+                                                    <option value="">Choisir le niveau</option>
+                                                    <option value="CFEE">CFEE</option>
+                                                    <option value="BFEM">BFEM</option>
+                                                    <option value="BAC">BAC</option>
+                                                    <option value="LICENCE">LICENCE</option>
+                                                    <option value="MASTER">MASTER</option>
+                                                </select>
+                                            </div>
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            
+                                        </div>
+                                    </div>
+                                    <!--=====================END ROW1====================-->
+                                    <!--=====================Condition accés====================-->
+                                    <!--=====================ROW2====================-->
+                                    <label for="">Condition accés</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_concours" name="c_concours">
+                                                <label class="form-check-label" for="c_concours">
+                                                    Concours
+                                                </label>
+                                              </div>
+        
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_dossier" name="c_dossier">
+                                                <label class="form-check-label" for="c_dossier">
+                                                    Dossier
+                                                </label>
+                                              </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                            
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_entretien" name="c_entretien">
+                                                <label class="form-check-label" for="c_entretien">
+                                                    Entretien
+                                                </label>
+                                              </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_autre" name="c_autre">
+                                                <label class="form-check-label" for="c_autre">
+                                                    Autre
+                                                </label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <!--=====================END ROW2====================-->
+                                    <!--===================== End Condition accés====================-->
+                                    
+                                    
+                                    
+                                    <!--=====================Dipolome====================-->
+                                    <!--=====================ROW2====================-->
+                                    <label for="">Diplome</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_dts" name="d_dts">
+                                                <label class="form-check-label" for="d_dts">
+                                                    Concours
+                                                </label>
+                                              </div>
+        
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bts">
+                                                <label class="form-check-label" for="d_bts">
+                                                    Dossier
+                                                </label>
+                                              </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bt">
+                                                <label class="form-check-label" for="d_bt">
+                                                    BT
+                                                </label>
+                                              </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_cs">
+                                                <label class="form-check-label" for="d_cs">
+                                                    CS
+                                                </label>
+                                              </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bac" name="d_bac">
+                                                <label class="form-check-label" for="d_bac">
+                                                    BAC
+                                                </label>
+                                              </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                            
+                                              
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_licence" name="d_licence">
+                                                <label class="form-check-label" for="d_licence">
+                                                    Licence
+                                                </label>
+                                              </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_master" name="d_master">
+                                                <label class="form-check-label" for="d_master">
+                                                    Master
+                                                </label>
+                                              </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_doctorat" name="d_doctorat">
+                                                <label class="form-check-label" for="d_doctorat">
+                                                    Doctorat
+                                                </label>
+                                              </div>
+        
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_certificat" name="d_certificat">
+                                                <label class="form-check-label" for="d_certificat">
+                                                    Certificat
+                                                </label>
+                                              </div>
+        
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_cap" name="d_cap">
+                                                <label class="form-check-label" for="d_cap">
+                                                    CAP
+                                                </label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <!--=====================END ROW2====================-->
+                                    <!--=====================END Dipolome====================-->
+                                    
+                                    <button type="submit" class="btn read-more text-white border-white float-right">Rechercher <i
+                                            class="fa fa-long-arrow-alt-right"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end contact us -->
+    <!-- start join us -->
+    <section class="pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="joinus-content theme-orange mx-5 hidden-lg" data-aos="zoom-in" data-aos-duration="550">
+                        <p class="text-uppercase font-weight-bold mb-0">La formation adequat</p>
+                        <h2 class="font-weight-bold mb-3">Trouver une formation</h2>
+                        <form method="GET" action="{% url 'formations' %}">
+                            {% csrf_token %}
+                            <!--=====================ROW0====================-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="region">Région</label>
+                                        <select class="form-control" id="region" name="region">
+                                            <option value="">Choisir la région</option>
+                                            {% for r in regions %}
+                                                <option value="{{r}}" {% if r == req_region %}selected="selected"{% endif %}>{{r}}</option>
+                                                
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="departement"> Département</label>
+                                        <select name='departement'  class="form-control" name="departement">
+                                            <option value="">Choisir le département</option>
+                                            {% for d in departements %}
+                                                <option value="{{d}}" {% if d == req_departement %}selected="selected"{% endif %}>
+                                                    {{d}}
+                                                </option>
+                                                
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--=====================END ROW0====================-->
+                            <!--=====================ROW1====================-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="niveau_requis">Niveau requis</label>
+                                        <select class="form-control" id="niveau_requis" name="niveau_requis">
+                                            <option value="">Choisir le niveau</option>
+                                            <option value="CFEE">CFEE</option>
+                                            <option value="BFEM">BFEM</option>
+                                            <option value="BAC">BAC</option>
+                                            <option value="LICENCE">LICENCE</option>
+                                            <option value="MASTER">MASTER</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    
+                                </div>
+                            </div>
+                            <!--=====================END ROW1====================-->
+                            <!--=====================Condition accés====================-->
+                            <!--=====================ROW2====================-->
+                            <label for="">Condition accés</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="c_concours" name="c_concours">
+                                        <label class="form-check-label" for="c_concours">
+                                            Concours
+                                        </label>
+                                      </div>
+
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="c_dossier" name="c_dossier">
+                                        <label class="form-check-label" for="c_dossier">
+                                            Dossier
+                                        </label>
+                                      </div>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                    
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="c_entretien" name="c_entretien">
+                                        <label class="form-check-label" for="c_entretien">
+                                            Entretien
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="c_autre" name="c_autre">
+                                        <label class="form-check-label" for="c_autre">
+                                            Autre
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+                            <!--=====================END ROW2====================-->
+                            <!--===================== End Condition accés====================-->
+                            
+                            
+                            
+                            <!--=====================Dipolome====================-->
+                            <!--=====================ROW2====================-->
+                            <label for="">Diplome</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_dts" name="d_dts">
+                                        <label class="form-check-label" for="d_dts">
+                                            Concours
+                                        </label>
+                                      </div>
+
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bts">
+                                        <label class="form-check-label" for="d_bts">
+                                            Dossier
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bt">
+                                        <label class="form-check-label" for="d_bt">
+                                            BT
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_cs">
+                                        <label class="form-check-label" for="d_cs">
+                                            CS
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bac" name="d_bac">
+                                        <label class="form-check-label" for="d_bac">
+                                            BAC
+                                        </label>
+                                      </div>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                    
+                                      
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_licence" name="d_licence">
+                                        <label class="form-check-label" for="d_licence">
+                                            Licence
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_master" name="d_master">
+                                        <label class="form-check-label" for="d_master">
+                                            Master
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_doctorat" name="d_doctorat">
+                                        <label class="form-check-label" for="d_doctorat">
+                                            Doctorat
+                                        </label>
+                                      </div>
+
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_certificat" name="d_certificat">
+                                        <label class="form-check-label" for="d_certificat">
+                                            Certificat
+                                        </label>
+                                      </div>
+
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{True}}" id="d_cap" name="d_cap">
+                                        <label class="form-check-label" for="d_cap">
+                                            CAP
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+                            <!--=====================END ROW2====================-->
+                            <!--=====================END Dipolome====================-->
+                            
+                            <button type="submit" class="btn read-more text-white border-white float-right">Rechercher <i
+                                    class="fa fa-long-arrow-alt-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end join us -->
+    <!-- start blog -->
+    <section class="blog">
+        <div class="container">
+            <div class="sec-title text-center mb-3">
+                <span class="title">ACTUALITÉS</span>
+                <h2>Soyez au courant de ce qui se passe</h2>
+                <div class="divider">
+                    <span class="fa fa-mortar-board"></span>
+                </div>
+            </div>
+            <div class="row">
+                
+            {% for article in articles_recents %}
+                <div class="col-md-4">
+                    <div class="post mb-xl-0 mb-lg-0 mb-md-0 mb-5" data-aos="fade-up" data-aos-duration="550">
+                        <img src="../media/{{article.img_article}}" class="img-fluid" alt="Blog">
+                        <div class="post_inner p-3">
+                            <p class="mb-1">{% language 'fr' %} {{article.created_at|date:'d F Y'}} {% endlanguage %} </p>
+                            <h5 class="font-weight-bold " >{{article.titre|make_list|slice:":49"|join:''}}...</h5>
+                            <p>{{ article.contenu|make_list|slice:":100"|join:''}}...</p>
+                            <div class="comment d-flex">
+                                <span class="mr-3"><i class="fa fa-user mr-3 color-orange"></i>Admin</span>
+                                <span class="mr-3"><i class="fa fa-comments mr-3 color-orange"></i>Comments</span>
+                            </div>
+                            <a href="{% url 'detailsActualite' id=article.id %}" class="btn color-orange read-more mt-3">Lire plus</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+                
+        </div>
+    </section>
+    <!-- end blog -->
+     <!-- start result showcase -->
+     {% include 'aller_carte.html' %}
+    <!-- end result showcase -->
+
+    
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
