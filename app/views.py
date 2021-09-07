@@ -144,6 +144,7 @@ def les_formations(request):
             paginator_m = Paginator(formations_m, 20)
             page_number_m = request.GET.get('page_m',1)
             page_obj_m = paginator_m.get_page(page_number_m)
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'lesformations.html',{'formations': page_obj,'articles_recents':articles_recents,'mesParams':mesParams,'formations_m':page_obj_m })
 #etablissement par formation
 def nomFormationTout(request):
@@ -195,17 +196,20 @@ def nomFormationTout(request):
         paginator_m = Paginator(formations_m, 20)
         page_number_m = request.GET.get('page_m',1)
         page_obj_m = paginator_m.get_page(page_number_m)
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'etablissementFormation.html',{'formations': page_obj,'articles_recents':articles_recents,'mesParams':mesParams,'formations_m':page_obj_m })
 
 #details formations
 def detailFormation(request,id):
     formation=Formation.objects.get(pk=id)
-    
+
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'detailsFormation.html',{'formation':formation,'articles_recents':articles_recents,'modulaire':'initiale'})
 #details formations_modulaire
 def detailFormationM(request,id):
     formation=Formation_modulaire.objects.get(pk=id)
-    
+
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'detailsFormation.html',{'formation':formation,'articles_recents':articles_recents,'modulaire':'modulaire'})
 
 #details formations
@@ -222,11 +226,13 @@ def detailEtablissement(request,id,modulaire):
     formations=Formation.objects.filter(etablissement__id=int(id))
 
     #print(formations)
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'detailsEtablissements.html',{'etablissement':etablissement,'formations':formations,'formations_m':formations_m,'from_map':from_map,'articles_recents':articles_recents,})
 
 
 #formation agricolt
 def formationAgricolt(request):
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'formationAgricolt.html',{'articles_recents':articles_recents,})
 #contact
 def contact(request):
@@ -235,16 +241,19 @@ def contact(request):
         objet=request.POST['objet']
         message=request.POST['message']
         print(nom+'\n'+objet+'\n'+message)
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'contact.html',{'articles_recents':articles_recents})
 #Actualité
 def actualite(request):
     articles=Article.objects.all()
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'actualite.html',{'articles':articles,'articles_recents':articles_recents,})
 #Détails actualité
 def detailsActualite(request,id):
     article=Article.objects.get(pk=id)
    
     print(articles_recents)
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'actualiteDetails.html',{'article':article,'articles_recents':articles_recents})
 
 
@@ -271,7 +280,7 @@ def formationDiplome(request):
         req_region=request.POST['region']
         etablissemnts_dj=EtablissemntsFilter(request.POST,etablissemnts_dj).qs
     regions,communes,departements=getRegions(etablissemnts_dj)
-    
+    articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'formationsDiplome.html',{'etablissements':etablissemnts_dj,'regions':regions,'communes':communes,
     'departements':departements,
     'req_departement':req_departement,
