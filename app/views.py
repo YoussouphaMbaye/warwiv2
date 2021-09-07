@@ -252,7 +252,6 @@ def actualite(request):
 def detailsActualite(request,id):
     article=Article.objects.get(pk=id)
    
-    print(articles_recents)
     articles_recents=Article.objects.all().order_by('created_at')[:5]
     return render(request,'actualiteDetails.html',{'article':article,'articles_recents':articles_recents})
 
