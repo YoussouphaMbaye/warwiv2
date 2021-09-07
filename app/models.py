@@ -11,8 +11,8 @@ class Etablissement(models.Model):
     ia=models.CharField(max_length=500,blank=True,null=True)
     ief=models.CharField(max_length=500,blank=True,null=True)
     adresse=models.CharField(max_length=500,blank=True,null=True)
-    longittude=models.CharField(max_length=500,blank=True,null=True)
-    lattitude=models.CharField(max_length=500,blank=True,null=True)
+    longitude=models.CharField(max_length=500,blank=True,null=True)
+    latitude=models.CharField(max_length=500,blank=True,null=True)
 
     m_enseignant_sup=models.BooleanField(default=0,blank=True,null=True)
     m_agriculture=models.BooleanField(default=0,blank=True,null=True)
@@ -69,10 +69,11 @@ class Formation(models.Model):
     c_concours=models.BooleanField(default=0,blank=True,null=True)
     c_dossier=models.BooleanField(default=0,blank=True,null=True)
     c_autre=models.BooleanField(default=0,blank=True,null=True)
+    c_autre_nom=models.CharField(max_length=500,blank=True,null=True)
     c_entretien=models.BooleanField(default=0,blank=True,null=True)
 
     duree=models.CharField(max_length=500,blank=True,null=True)
-    nb_forme=models.IntegerField(default=0,blank=True,null=True)
+    nb_homme=models.IntegerField(default=0,blank=True,null=True)
     nb_femme=models.IntegerField(default=0,blank=True,null=True)
 
     d_dts=models.BooleanField(default=0,blank=True,null=True)
@@ -110,7 +111,47 @@ class Formation(models.Model):
 
     def __str__(self):
         return  self.nom_formation
+#=============formatiom Modulaire===============
+class Formation_modulaire(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    nom_formation=models.CharField(max_length=500,blank=True,null=True)
+    niveau_requis=models.CharField(max_length=500,blank=True,null=True)
 
+    c_concours=models.BooleanField(default=0,blank=True,null=True)
+    c_dossier=models.BooleanField(default=0,blank=True,null=True)
+    c_autre=models.BooleanField(default=0,blank=True,null=True)
+    c_autre_nom=models.CharField(max_length=500,blank=True,null=True)
+    c_entretien=models.BooleanField(default=0,blank=True,null=True)
+
+    duree=models.CharField(max_length=500,blank=True,null=True)
+    nb_homme=models.IntegerField(default=0,blank=True,null=True)
+    nb_femme=models.IntegerField(default=0,blank=True,null=True)
+
+    diplome=models.CharField(max_length=500,blank=True,null=True)
+    
+    metier=models.CharField(max_length=500,blank=True,null=True)
+    accreditation=models.CharField(max_length=500,blank=True,null=True)
+    date_accreditation=models.CharField(max_length=500,blank=True,null=True)
+    structure_accreditation=models.CharField(max_length=500,blank=True,null=True)
+    
+    habilitation=models.CharField(max_length=500,blank=True,null=True)
+    date_habilitation=models.CharField(max_length=500,blank=True,null=True)
+    structure_habilitation=models.CharField(max_length=500,blank=True,null=True)
+
+    cout_formation=models.CharField(max_length=500,blank=True,null=True)
+    
+    nb_sortant_homme=models.IntegerField(default=0,blank=True,null=True)
+    nb_sortant_femme=models.IntegerField(default=0,blank=True,null=True)
+
+    etablissement=models.ForeignKey(Etablissement,on_delete=models.CASCADE)
+
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    update_at=models.DateTimeField(auto_now=True,null=True)
+
+    def __str__(self):
+        return  self.nom_formation
+
+#=====================================
 class Employer(models.Model):
     id=models.BigIntegerField(primary_key=True)
     nom=models.CharField(max_length=500,blank=True,null=True)

@@ -87,18 +87,38 @@
 
     <section class="">
         <div class="container">
-            <h4><span class="title">Formations disponible</span></h4>
+            <h4><span class="title">Formations disponibles</span></h4>
             {{formation.etablissement.nom_etablissement}}
+            <h6>Formation initiale</h6>
             
             <div class="row px-3">
-                
-                    {% for f in formations %}
+                <!-- formation initiale -->
+                {%if formations%}
+                {% for f in formations %}
+                <div class="col-md-4 mb-3">
+                    <a href="{% url 'detailsFormation' id=f.id  %}">
+                        {{f.nom_formation}}
+                    </a>
+                </div>
+                    
+                {% endfor %}
+                {% else %}
+                <div class="w-100 text-center text-danger p-4"><h4>Pas de résultats!</h4></div>
+                {%endif%}
+            </div>
+            <h6>Formation modulaire</h6>
+            <div class="row px-3">
+                <!-- formation modulaire -->
+                   {% if formations_m %}
+                    {% for f in formations_m %}
                     <div class="col-md-4 mb-3">
-                        <a href="{% url 'detailsFormation' f.id %}">{{f.nom_formation}}</a>
-                    </div>
                         
+                        <a href="{% url 'detailsFormationM' id=f.id  %}">{{f.nom_formation}}</a>
+                    </div>    
                     {% endfor %}
-                
+                    {% else %}
+                     <div class="w-100 text-center text-danger p-4"><h4>Pas de résultats!</h4></div>
+                    {%endif%}
             </div>
             
         </div>

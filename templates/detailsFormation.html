@@ -17,6 +17,69 @@
                     <span class="fa fa-mortar-board"></span>
                 </div>
             </div>
+            <div>
+                <h4>Rappelle de la recherche</h4>
+                <ul>
+                    {% if request.GET.region%}
+                    <li>Région: {{request.GET.region}}</li>
+                   
+                    {%endif%}
+                    {%if request.GET.type%}
+                    <li>Type de fromation: {{request.GET.type}}</li>
+                    {%endif%}
+                    {% if request.GET.niveau_requis%}
+                    <li>Niveau requis: {{request.GET.niveau_requis}}</li>
+                    {% endif %}
+                    {% if request.GET.c_concours%}
+                    <li>Condition accés: Concours </li>
+                    {% endif %}
+                    {% if request.GET.c_dossier%}
+                    <li>Condition accés: Dossier</li>
+                    {% endif %}
+                    {% if request.GET.c_entretien%}
+                    <li>Condition accés: Entretien</li>
+                    {% endif %}
+                    {% if request.GET.c_autre%}
+                    <li>Condition accés: Autre</li>
+                    {% endif %}
+                    {% if request.GET.d_dts%}
+                    <li>Diplôme: DTS</li>
+                    {% endif %}
+                    {% if request.GET.c_bts%}
+                    <li>Diplôme: BTS</li>
+                    {% endif %}
+                    {% if request.GET.d_bt%}
+                    <li>Diplôme: Autre</li>
+                    {% endif %}
+                    {% if request.GET.d_cs%}
+                    <li>Diplôme: CS</li>
+                    {% endif %}
+                    {% if request.GET.d_bac%}
+                    <li>Diplôme: BAC</li>
+                    {% endif %}
+                    {% if request.GET.d_licence%}
+                    <li>Diplôme: Licence</li>
+                    {% endif %}
+                    {% if request.GET.d_master%}
+                    <li>Diplôme: Master</li>
+                    {% endif %}
+                    {% if request.GET.d_doctorat%}
+                    <li>Diplôme: Doctorat</li>
+                    {% endif %}
+                    {% if request.GET.d_certificat%}
+                    <li>Diplôme: Certificat</li>
+                    {% endif %}
+                    {% if request.GET.d_attestation%}
+                    <li>Diplôme: Attestation</li>
+                    {% endif %}
+                    {% if request.GET.d_cap %}
+                    <li>Diplôme: CAP</li>
+                    {% endif %}
+                    {% if not request.GET.region and not request.GET.type and not equest.GET.niveau_requis and not request.GET.c_concours and not request.GET.c_dossier and not request.GET.c_entretien and not request.GET.c_autre and not request.GET.d_dts and not request.GET.d_bts and not request.GET.d_bt and not request.GET.d_cap and not request.GET.d_cs and not request.GET.d_bac and not request.GET.d_licence and not request.GET.d_master and not request.GET.d_doctorat and not request.GET.d_certificat and not request.GET.d_attestation %}
+                        Pas de paramétres sélectionnés
+                    {% endif %}
+                </ul>
+            </div>
             <div class="row justify-content-center">
                 <div class=" col-md-12">
                     <div class="career-form p-5" data-aos="fade-up" data-aos-duration="1000">
@@ -44,7 +107,7 @@
                                 <h4>Durée:</h4>
                             </div>
                             <div class="col-md-6">
-                                {{formation.duree}}
+                                {{formation.duree}} {%ifequal modulaire 'initiale' %} ans{% endifequal %}
                             </div> 
                         </div>
 
@@ -73,6 +136,11 @@
                             <div class="col-md-6">
                                 <h4>Diplômes délivrés:</h4>
                             </div>
+                            {% ifequal modulaire 'modulaire' %}
+                                <div class="col-md-6">
+                                    {{formation.diplome}}
+                                </div> 
+                            {%else%}
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -95,6 +163,7 @@
                                 </div>
                                 
                             </div> 
+                            {% endifequal %}
                         </div>
                         
                     </div>
@@ -109,7 +178,9 @@
     <section class="">
         <div class="container">
             <h4><span class="title">Etablissement fournissant la formation</span></h4>
-            <a href="{% url 'detailsEtablissement' formation.etablissement.id %}">{{formation.etablissement.nom_etablissement}}</a>
+            <a href="{% url 'detailsEtablissement' id=formation.etablissement.id modulaire=modulaire %}?nom_formation={{f.nom_formation}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_cs={{request.GET.d_cs}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&d_attestation={{request.GET.d_attestation}}">
+                {{formation.etablissement.nom_etablissement}}
+            </a>
             
         </div>
     </section>

@@ -1,0 +1,194 @@
+<form method="GET" action="{% url 'formations' %}">
+    {% csrf_token %}
+    <!--=====================ROW0====================-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="region"><h4>Région</h4></label>
+                <select class="form-control" id="region" name="region">
+                    <option value="">Choisir la région</option>
+                    {% for r in regions %}
+                        <option value="{{r}}" {% if r == req_region %}selected="selected"{% endif %}>{{r}}</option>
+                        
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- <div class="form-group">
+                <label for="departement"> <h4>Département</h4></label>
+                <select name='departement'  class="form-control" name="departement">
+                    <option value="">Choisir le département</option>
+                    {% for d in departements %}
+                        <option value="{{d}}" {% if d == req_departement %}selected="selected"{% endif %}>
+                            {{d}}
+                        </option>
+                        
+                    {% endfor %}
+                </select>
+            </div> -->
+            <div class="form-group">
+                <label for="niveau_requis"><h4>Niveau requis</h4></label>
+                <select class="form-control" id="niveau_requis" name="niveau_requis">
+                    <option value="">Choisir le niveau</option>
+                    <option value="CFEE">CFEE</option>
+                    <option value="BFEM">BFEM</option>
+                    <option value="BAC">BAC</option>
+                    <option value="LICENCE">LICENCE</option>
+                    <option value="MASTER">MASTER</option>
+                </select>
+            </div>
+
+             
+        </div>
+    </div>
+    <!--=====================END ROW0====================-->
+    <!--=====================ROW1====================-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="radio" id="init" name="type" value="initiale" checked/>
+                <label for="init"><h4>Formation Initiale</h4></label>
+              </div>
+              
+              
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="radio" id="modulaire" name="type" value="modulaire" width="50%"/>
+                <label for="modulaire"><h4>Formation Modulaire</h4></label>
+              </div>
+        </div>
+    </div>
+    <!--=====================END ROW1====================-->
+    <!--=====================Condition accés====================-->
+    <!--=====================ROW2====================-->
+    <h4>Condition accés</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_concours" name="c_concours">
+                <label class="form-check-label" for="c_concours">
+                    Concours
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_dossier" name="c_dossier">
+                <label class="form-check-label" for="c_dossier">
+                    Dossier
+                </label>
+              </div>
+        </div>
+        <div class="col-md-6">
+            
+            
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_entretien" name="c_entretien">
+                <label class="form-check-label" for="c_entretien">
+                    Entretien
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="c_autre" name="c_autre">
+                <label class="form-check-label" for="c_autre">
+                    Autre
+                </label>
+              </div>
+        </div>
+    </div>
+    <!--=====================END ROW2====================-->
+    <!--===================== End Condition accés====================-->
+    
+    
+    
+    <!--=====================Dipolome====================-->
+    <!--=====================ROW2====================-->
+    <h4 >Diplome</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_dts" name="d_dts">
+                <label class="form-check-label" for="d_dts">
+                    DTS
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bts" name='d_bts'>
+                <label class="form-check-label" for="d_bts">
+                    BTS
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bt" name="d_bt">
+                <label class="form-check-label" for="d_bt">
+                    BT
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_cs" name="d_cs">
+                <label class="form-check-label" for="d_cs">
+                    CS
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_bac" name="d_bac">
+                <label class="form-check-label" for="d_bac">
+                    BAC
+                </label>
+              </div>
+        </div>
+        <div class="col-md-6">
+            
+            
+              
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_licence" name="d_licence">
+                <label class="form-check-label" for="d_licence">
+                    Licence
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_master" name="d_master">
+                <label class="form-check-label" for="d_master">
+                    Master
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_doctorat" name="d_doctorat">
+                <label class="form-check-label" for="d_doctorat">
+                    Doctorat
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_certificat" name="d_certificat">
+                <label class="form-check-label" for="d_certificat">
+                    Certificat
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{True}}"  id="d_attestation" name="d_attestation">
+                <label class="form-check-label" for="d_attestation">
+                    Attestation
+                </label>
+              </div>
+
+              <div class="form-check">
+                  <!-- lllllllll -->
+                <input class="form-check-input" type="checkbox" value="{{True}}" id="d_cap" name="d_cap">
+                <label class="form-check-label" for="d_cap">
+                    CAP
+                </label>
+              </div>
+        </div>
+    </div>
+    <!--=====================END ROW2====================-->
+    <!--=====================END Dipolome====================-->
+    
+    <button type="submit" class="btn read-more text-white border-white float-right">Rechercher <i
+            class="fa fa-long-arrow-alt-right"></i></button>
+</form>

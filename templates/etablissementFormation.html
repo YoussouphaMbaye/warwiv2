@@ -1,6 +1,4 @@
-
 {% extends 'base.html' %}
-
 {% block content %}
 
     
@@ -14,7 +12,7 @@
         <div class="container">
             <div class="sec-title text-center mb-3" data-aos="fade-up" data-aos-duration="1000">
                 <span class="title">Formations & Diplomes</span>
-                <h2>Liste des formations</h2>
+                <h2>Formation par établissements</h2>
                 <div class="divider">
                     <span class="fa fa-mortar-board"></span>
                 </div>
@@ -22,7 +20,6 @@
             <div>
                 <h4>Rappelle de la recherche</h4>
                 <ul>
-                    
                     {% if request.GET.region%}
                     <li>Région: {{request.GET.region}}</li>
                    
@@ -30,7 +27,7 @@
                     {%if request.GET.type%}
                     <li>Type de formation: {{request.GET.type}}</li>
                     {%endif%}
-                    {% if request.GET.niveau_requis %}
+                    {% if request.GET.niveau_requis%}
                     <li>Niveau requis: {{request.GET.niveau_requis}}</li>
                     {% endif %}
                     {% if request.GET.c_concours%}
@@ -78,26 +75,32 @@
                     {% if request.GET.d_cap %}
                     <li>Diplôme: CAP</li>
                     {% endif %}
+                    <!-- juste pour cette page -->
+                    {% if request.GET.nom_formation %}
+                    <li>Formation: {{request.GET.nom_formation}}</li>
+                    {% endif %}
                     {% if not request.GET.region and not request.GET.type and not request.GET.departement and not equest.GET.niveau_requis and not request.GET.c_concours and not request.GET.c_dossier and not request.GET.c_entretien and not request.GET.c_autre and not request.GET.d_dts and not request.GET.d_bts and not request.GET.d_bt and not request.GET.d_cap and not request.GET.d_cs and not request.GET.d_bac and not request.GET.d_licence and not request.GET.d_master and not request.GET.d_doctorat and not request.GET.d_certificat and not request.GET.d_attestation %}
                         Pas de paramétres sélectionnés
                     {% endif %}
-                    
-                    
                 </ul>
             </div>
             <div class="pb-5">
-            {% if formations %}
+            {% if formations%}
             <!-- <h3 class="font-weight-bold color-orange" data-aos="fade-up" data-aos-duration="1000">Formation initiale</h3> -->
             <hr/>
             <div class="row px-3">
+                
                 <div class="row pl-5">
                     {% for f in formations %}
-                    <div class="col-md-4 col-lg-3 mb-3">
-                        <a href="nomFormationTout?type=initiale&nom_formation={{f.nom_formation}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_cs={{request.GET.d_cs}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&d_attestation={{request.GET.d_attestation}}" class="text-primary "><h6>{{f.nom_formation|lower|capfirst}}</h6></a>
+                    <div class="col-md-3 mb-3">
+                        <h6><a class="text-primary" href="{% url 'detailsFormation' f.id %}?nom_formation={{f.nom_formation}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_cs={{request.GET.d_cs}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}">
+                            <h6>{{f.etablissement.nom_etablissement}}</h6>
+                        </a></h6>
                     </div>
                         
                     {% endfor %}
                 </div>
+                
                 <div class="row justify-content-center w-100 mt-3" style="overflow: auto;">
 
                     <nav aria-label="..." class="float-right">
@@ -127,21 +130,22 @@
                 
                 
                 </div>
+                
             </div>
-            {% endif %}
-            {%if not formations and not formations_m%}
-                <div class=" w-100 text-center text-danger p-4"><h4>Pas de résultats!</h4></div>
-            {%endif%}
+                
+                {% endif %}
                 <!-- ================================Formation Modulaire================== -->
         <div class="">
-               {%if formations_m %} 
+            {% if formations_m %}
             <!-- <h3 id="formatiom_m" class="font-weight-bold color-orange" data-aos="fade-up" data-aos-duration="1000">Formation modulaire</h3> -->
             <hr/>
             <div class="row px-3" >
+                
                 <div class="row pl-5">
                     {% for f in formations_m %}
-                    <div class="col-md-3 mb-3">
-                        <a href="nomFormationTout?type=modulaire&nom_formation={{f.nom_formation}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&d_attestation={{request.GET.d_attestation}}" class="text-primary"><h6>{{f.nom_formation|lower|capfirst}}</h6></a>
+                    <div class="col-md-3 mb-3 ">
+                        <h6><a  class="text-primary" href="{% url 'detailsFormationM' f.id %}?nom_formation={{f.nom_formation}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_cs={{request.GET.d_cs}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}">
+                            <h6>{{f.etablissement.nom_etablissement}}</h6></a></h6>
                     </div>
                         
                     {% endfor %}
@@ -152,12 +156,12 @@
                         <ul class="pagination" >
                             {% if formations_m.has_previous %}
                             <li class="page-item disabled">
-                                <a href="?page_m={{formations_m.previous_page_number}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&diplome={{request.GET.diplome}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}"><span class="page-link">Previous</span></a>
+                                <a href="?page_m={{formations_m.previous_page_number}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&diplome={{request.GET.diplome}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}/#formatiom_m"><span class="page-link">Previous</span></a>
                             </li>
                             {% endif %}
                             {% for p in formations_m.paginator.page_range %}
                             <li class="page-item {% ifequal formations_m.number p %} active {% endifequal %}">
-                                <a class="page-link" href="?page_m={{p}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&diplome={{request.GET.diplome}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}">{{p}}</a>
+                                <a class="page-link" href="?page_m={{p}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&diplome={{request.GET.diplome}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}/#formatiom_m">{{p}}</a>
                                 {% ifequal formations_m.number p %}
                                 <span class="sr-only">(current)</span>
                                 {% endifequal %}
@@ -167,8 +171,7 @@
                 
                             {% if formations_m.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="?page_m={{formations_m.next_page_number}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&diplome={{request.GET.diplome}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}">Next</a>
-                                <!-- <a href="?page={{formations_m.paginator.num_pages }}">last &raquo;</a> -->
+                                <a class="page-link" href="?page_m={{formations.next_page_number}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&diplome={{request.GET.diplome}}&d_attestation={{request.GET.d_attestation}}&type={{request.GET.type}}/#formatiom_m">Next</a>
                             </li>
                             {% endif %}
                         </ul>
@@ -176,12 +179,13 @@
                 
                 
                 </div>
+                
             </div>
-            {% endif %}
+                {% endif %}
+            </div>
             {%if not formations and not formations_m%}
                 <div class=" w-100 text-center text-danger p-4"><h4>Pas de résultats!</h4></div>
             {%endif%}
-            </div>
         </div>
     </section>
     <!-- end search result -->

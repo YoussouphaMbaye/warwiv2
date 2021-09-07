@@ -33,7 +33,7 @@
       <!-- Make sure you put this AFTER Leaflet's CSS -->
       <style type="text/css">
         #mapid { height: 550px; }
-        #mapid2 { height: 350px; }
+        #mapid2 { height: 300px; }
        
       </style>
    
@@ -53,8 +53,8 @@
         <div class="container">
             <div class="row align-content-center">
                 <div class="col-xl-3 col-lg-4 col-md-12 text-left top-btn">
-                    <button type="button" class="btn theme-orange">Admission</button>
-                    <button type="button" class="btn theme-orange">Quick Inquery</button>
+                    <!-- <button type="button" class="btn theme-orange">Admission</button>
+                    <button type="button" class="btn theme-orange">Quick Inquery</button> -->
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-4 py-2 font-weight-bold f-15 announcement">
                     <i class="fa fa-bullhorn mr-3"></i><span>Announcement</span>
@@ -96,17 +96,17 @@
                             </div>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'formationAgricolt'%}">Enseignement agricolt</a>
+                            <a class="nav-link" href="{% url 'formationAgricolt'%}">Enseignement agricole</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'formationDiplome' %}">Formation et diplome</a>
+                            <a class="nav-link" href="{% url 'formationDiplome' %}">Formations et diplomes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'actualite' %}">Actualite</a>
+                            <a class="nav-link" href="{% url 'actualite' %}">Actualités</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="{% url 'contact' %}">Contacts</a>
                         </li>
                     </ul>
                 </div>
@@ -134,10 +134,10 @@
                 <a href="result.html"><i class="fa fa-caret-right mr-3"></i>Result</a>
                 <a href="course.html"><i class="fa fa-caret-right mr-3"></i>Course</a>
             </div> -->
-            <a href="{% url 'formationAgricolt'%}">Enseignement agricolt</a>
-            <a href="{% url 'formationDiplome' %}">Formation et diplome</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
+            <a href="{% url 'formationAgricolt'%}">Enseignement agricole</a>
+            <a href="{% url 'formationDiplome' %}">Formations et diplomes</a>
+            <a href="{% url 'actualite' %}">Actualités</a>
+            <a href="{% url 'contact' %}">Contacts</a>
         </div>
     </div>
     <!-- end side menu -->
@@ -164,12 +164,12 @@
                 <div class="col-lg-2 col-md-6" data-aos="fade-in" data-aos-duration="550">
                     <h5 class="font-weight-bold mb-3">Liens utiles</h5>
                     <ul>
-                        <li><a href="index.html"><i class="fa fa-angle-double-right mr-2"></i>Accueil</a></li>
-                        <li><a href="about.html"><i class="fa fa-angle-double-right mr-2"></i>Enseignement agricolt</a></li>
-                        <li><a href="student.html"><i class="fa fa-angle-double-right mr-2"></i>Formation et diplome</a></li>
-                        <li><a href="faculties.html"><i class="fa fa-angle-double-right mr-2"></i>Gallery</a></li>
+                        <li><a href="{% url 'accueil'%}"><i class="fa fa-angle-double-right mr-2"></i>Accueil</a></li>
+                        <li><a href="{% url 'formationAgricolt'%}"><i class="fa fa-angle-double-right mr-2"></i>Enseignement agricole</a></li>
+                        <li><a href="{% url 'formationDiplome' %}"><i class="fa fa-angle-double-right mr-2"></i>Formation et diplome</a></li>
+                        <li><a href="{% url 'actualite' %}"><i class="fa fa-angle-double-right mr-2"></i>Actualité</a></li>
                         
-                        <li><a href="contact.html"><i class="fa fa-angle-double-right mr-2"></i>Contact</a></li>
+                        <li><a href="{% url 'contact' %}"><i class="fa fa-angle-double-right mr-2"></i>Contacts</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-md-5 mb-4" data-aos="fade-in" data-aos-duration="1050">

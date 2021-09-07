@@ -1,0 +1,1 @@
+web: gunicorn carto_agro.wsgi
