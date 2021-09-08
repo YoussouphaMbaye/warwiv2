@@ -45,9 +45,10 @@ def cartographie(request):
 
 def home(request):
     formations=Formation.objects.all()
+    formations_m=Formation_modulaire.objects.all()
     etablissemnts_dj=Etablissement.objects.all()
     nb_etablissement=len(etablissemnts_dj)
-    nb_fromation=len(formations)
+    nb_fromation=len(formations)+len(formations_m)
     print("-----------------------hhhhhhhhhhhh----------------------")
     def format_for_leaflet(les_etablissements):
         list=[]
