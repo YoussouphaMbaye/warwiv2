@@ -437,7 +437,7 @@ a.dropdown-item:hover {
 }
 .carousel-caption {
     bottom: unset;
-    top: 150px;
+    top: 100px;
     right: unset;
     max-width: 600px;
     text-align: left;
@@ -1833,7 +1833,7 @@ li {
 
 @media only screen and (max-width: 600px) {
     .carousel-caption h1 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     .online-course-inner .counter-box .counter {
         margin-right: 2rem;
