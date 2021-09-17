@@ -26,10 +26,11 @@
                                 <h4>Localisation:</h4>
                             </div>
                             <div class="col-md-6">
-                               <span class="attribut">Région:</span>  {{etablissement.region}}<br/>
-                               <span class="attribut">Département:</span> {{etablissement.departement}}<br/>
-                               <span class="attribut">Commune:</span> {{etablissement.commune}}<br/>
-                               <span class="attribut">Adress:</span> {{etablissement.adresse}}<br/>
+                               <span class="attribut">Région:</span> {% if etablissement.region %} {{etablissement.region}}{% endif %}<br/>
+                               <span class="attribut">Département:</span>{% if etablissement.departement %} {{etablissement.departement}} {% endif %}<br/>
+                               <span class="attribut">Commune:</span>{% if etablissement.commune %} {{etablissement.commune}} {% endif %}<br/>
+                               
+                               <span class="attribut">Adresse:</span>{%if etablissement.adresse %} {{etablissement.adresse}}{% endif %}<br/>
                             </div> 
                         </div>
                         <hr/>
@@ -38,9 +39,9 @@
                                 <h4>Contact:</h4>
                             </div>
                             <div class="col-md-6">
-                                <span class="attribut">Email:</span> {{etablissement.email}}<br/>
-                                <span class="attribut">Telephone:</span> {{etablissement.telephone}}<br/>
-                                <span class="attribut">Site web:</span> {{etablissement.site_web}}<br/>
+                                <span class="attribut">Email:</span>{% if etablissement.email %} {{etablissement.email}} {% endif %}<br/>
+                                <span class="attribut">Telephone:</span>{%if etablissement.telephone %} {{etablissement.telephone}} {% endif %}<br/>
+                                <span class="attribut">Site web:</span>{%if etablissement.site_web %} {{etablissement.site_web}} {% endif %}<br/>
                             
                                 
                             </div> 

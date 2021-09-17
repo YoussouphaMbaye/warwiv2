@@ -98,7 +98,7 @@
                                 <h4>Niveau requis:</h4>
                             </div>
                             <div class="col-md-6">
-                                {{formation.niveau_requis}}
+                                {% if formation.niveau_requis %}{{formation.niveau_requis}}{% endif %}
                             </div> 
                         </div>
 
@@ -107,7 +107,7 @@
                                 <h4>Durée:</h4>
                             </div>
                             <div class="col-md-6">
-                                {{formation.duree}} {%ifequal modulaire 'initiale' %} ans{% endifequal %}
+                                {% if formation.duree %} {{formation.duree}} {%ifequal modulaire 'initiale' %} ans{% endifequal %}{% endif %}
                             </div> 
                         </div>
 
@@ -116,7 +116,7 @@
                                 <h4>Métiers:</h4>
                             </div>
                             <div class="col-md-6">
-                                {{formation.metier}}
+                                {% if formation.metier %}{{formation.metier}}{% endif %}
                             </div> 
                         </div>
                         <hr/>
@@ -178,7 +178,7 @@
     <section class="">
         <div class="container">
             <h4><span class="title">Etablissement fournissant la formation</span></h4>
-            <a href="{% url 'detailsEtablissement' id=formation.etablissement.id modulaire=modulaire %}?nom_formation={{f.nom_formation}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_cs={{request.GET.d_cs}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&d_attestation={{request.GET.d_attestation}}">
+            <a href="{% url 'detailsEtablissement' id=formation.etablissement.id %}?nom_formation={{f.nom_formation}}&niveau_requis={{request.GET.niveau_requis}}&region={{request.GET.region}}&departement={{request.GET.departement}}&departement={{request.GET.departement}}&c_concours={{request.GET.c_concours}}&c_dossier={{request.GET.c_dossier}}&c_entretien={{request.GET.c_entretien}}&c_autre={{request.GET.c_autre}}&d_dts={{request.GET.d_dts}}&d_bts={{request.GET.d_bts}}&d_bt={{request.GET.d_bt}}&d_cs={{request.GET.d_cs}}&d_bac={{request.GET.d_bac}}&d_licence={{request.GET.d_licence}}&d_master={{request.GET.d_master}}&d_doctorat={{request.GET.d_doctorat}}&d_certificat={{request.GET.d_certificat}}&d_cap={{request.GET.d_cap}}&d_attestation={{request.GET.d_attestation}}">
                 {{formation.etablissement.nom_etablissement}}
             </a>
             

@@ -214,7 +214,7 @@ def detailFormationM(request,id):
     return render(request,'detailsFormation.html',{'formation':formation,'articles_recents':articles_recents,'modulaire':'modulaire'})
 
 #details formations
-def detailEtablissement(request,id,modulaire):
+def detailEtablissement(request,id):
     print('=========================')
     etablissement=Etablissement.objects.get(pk=id)
     from_map={'lat':etablissement.latitude,'long':etablissement.longitude,'reg':etablissement.region}
