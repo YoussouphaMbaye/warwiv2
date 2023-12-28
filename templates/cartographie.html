@@ -1,5 +1,6 @@
 ﻿{% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
     
     <!-- start inner-banner -->
@@ -22,29 +23,89 @@
                     <div class="bg-dark"> 
                         <form method="POST" action="">
                             {% csrf_token %}
-                            <select name='region' onchange="this.form.submit()">
-                                <option value="">Région</option>
-                                {% for r in regions %}
-                                    <option value="{{r}}" {% if r == req_region %}selected="selected"{% endif %}>{{r}}</option>
-                                    
-                                {% endfor %}
-                            </select>
-                            <select name='departement' onchange="this.form.submit()">
-                                <option value="">Département</option>
-                                {% for d in departements %}
-                                    <option value="{{d}}" {% if d == req_departement %}selected="selected"{% endif %}>
-                                        {{d}}
-                                    </option>
-                                    
-                                {% endfor %}
-                            </select>
-                            <select name='commune' onchange="this.form.submit()">
-                                <option value="">Commune</option>
-                                {% for c in communes %}
-                                    <option value="{{c}}" {% if c == req_commune %}selected="selected"{% endif %}>{{c}}</option>
-                                    
-                                {% endfor %}
-                            </select>
+                            {% if req_form_active%}
+                            <div class="d-flex justify-content-center text-light">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input required type="radio" id="init" name="type" value="initiale" {% if mtype == 'initiale' %}checked{% endif %} class="regular-checkbox" onchange="this.form.submit()"/>
+                                        <label for="init"><h4>Formation Initiale</h4></label>
+                                      </div>
+                                      
+                                      
+                                </div>
+                        
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input required type="radio" id="modulaire" name="type" value="modulaire" {% if mtype == 'modulaire' %}checked{% endif %} width="50%" onchange="this.form.submit()"/>
+                                        <label for="modulaire"><h4>Formation Modulaire</h4></label>
+                                      </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="row">
+                           <div class="col-md-3">
+                                    <select name='region' class="form-control" onchange="this.form.submit()">
+                                        <option value="">Région</option>
+                                        {% for r in regions %}
+                                            <option value="{{r}}" {% if r == req_region %}selected="selected"{% endif %}>{{r}}</option>
+                                            
+                                        {% endfor %}
+                                    </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name='departement' class="form-control" onchange="this.form.submit()">
+                                    <option value="">Département</option>
+                                    {% for d in departements %}
+                                        <option value="{{d}}" {% if d == req_departement %}selected="selected"{% endif %}>
+                                            {{d}}
+                                        </option>
+                                        
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name='commune' class="form-control" onchange="this.form.submit()">
+                                    <option value="">Commune</option>
+                                    {% for c in communes %}
+                                        <option value="{{c}}" {% if c == req_commune %}selected="selected"{% endif %}>{{c}}</option>
+                                        
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name='statut_juridique' onchange="this.form.submit()">
+                                    <option value="">Statut Juridique</option>
+                                    {% for s in statuJur %}
+                                        <option value="{{s}}" {% if s == req_satatu %}selected="selected"{% endif %}>{{s}}</option>
+                                        
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            </div>
+                            <div class="row mt-md-2">
+                                <div class="col-md-3">
+                                    <select class="form-control" name='nom_formation' onchange="this.form.submit()">
+                                        <option value="">Formations</option>
+                                        {% for f in lesFormationsNon %}
+                                            <option value="{{f}}" {% if f == req_nom_formation %}selected="selected"{% endif %}>{{f}}</option>
+                                            
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!-- <div class="col-md-3">
+                                    <select class="form-control" name='nom_etablissement' onchange="this.form.submit()">
+                                        <option value="">Etablissements</option>
+                                        {% for f in nom_etablissements %}
+                                            <option value="{{f}}" {% if f == req_nom_etablissement %}selected="selected"{% endif %}>{{f}}</option>
+                                            
+                                        {% endfor %}
+                                    </select>
+                                </div> -->
+                                <div class="col-md-3">
+                                    <input type="text" name='nom_etablissement' class="form-control" onchange="this.form.submit()" value="{{req_nom_etablissement}}" placeholder="Etablissement"/>
+                                </div>    
+                            </div>
+                            
                             
                         </form>
                     </div>
@@ -56,9 +117,12 @@
             
         {{ etablissements|json_script:"my-data" }}
         <!-- ===============leaflet js============= -->
+        
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
+            <script src="{% static 'assets/js/leaflet-canvasicon.js'%}"></script>
+            <!-- <script src="{% static 'assets/js/leaflet.legend.js'%}"></script> -->
             <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
             <script>
             var mymap = L.map('mapid').setView([14.5083345,-15.6012063], 7.4);
@@ -71,91 +135,189 @@
             OpenStreetMap_Mapnik.addTo(mymap);
             const value = JSON.parse(document.getElementById('my-data').textContent);
             var markersCluster = new L.MarkerClusterGroup();
+            //========================creation de icone=======================
+            var in_public=L.canvasIcon({
+                    iconSize: [15, 15],
+                    iconAnchor: [25, 25],
+                    fillStyle: 'rgb(34,139,34)',//vert
+                    drawIcon: function (icon, type) {
+                        if (type == 'icon') {
+                            var ctx = icon.getContext('2d');
+                            var size = L.point(this.options.iconSize);
+                            var center = L.point(Math.floor(size.x / 2), Math.floor(size.y / 2));
+                            ctx.beginPath();
+                            ctx.arc(center.x, center.y, Math.min(center.x, center.y), 0, 2 * Math.PI);
+                            ctx.fillStyle = this.options.fillStyle;
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                    }
+                });
+                var icone_autre=L.canvasIcon({
+                    iconSize: [15, 15],
+                    iconAnchor: [25, 25],
+                    fillStyle: 'rgb(149,19,19)',//red noir
+                    drawIcon: function (icon, type) {
+                        if (type == 'icon') {
+                            var ctx = icon.getContext('2d');
+                            var size = L.point(this.options.iconSize);
+                            var center = L.point(Math.floor(size.x / 2), Math.floor(size.y / 2));
+                            ctx.beginPath();
+                            ctx.arc(center.x, center.y, Math.min(center.x, center.y), 0, 2 * Math.PI);
+                            ctx.fillStyle = this.options.fillStyle;
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                    }
+                });
+                var icone_GIE=L.canvasIcon({
+                    iconSize: [15, 15],
+                    iconAnchor: [25, 25],
+                    fillStyle: 'rgb(204,204,0)',//green
+                    drawIcon: function (icon, type) {
+                        if (type == 'icon') {
+                            var ctx = icon.getContext('2d');
+                            var size = L.point(this.options.iconSize);
+                            var center = L.point(Math.floor(size.x / 2), Math.floor(size.y / 2));
+                            ctx.beginPath();
+                            ctx.arc(center.x, center.y, Math.min(center.x, center.y), 0, 2 * Math.PI);
+                            ctx.fillStyle = this.options.fillStyle;
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                    }
+                });
+                var icone_association=L.canvasIcon({
+                    iconSize: [15, 15],
+                    iconAnchor: [25, 25],
+                    fillStyle: 'rgb(255,255,0)',//green claire
+                    drawIcon: function (icon, type) {
+                        if (type == 'icon') {
+                            var ctx = icon.getContext('2d');
+                            var size = L.point(this.options.iconSize);
+                            var center = L.point(Math.floor(size.x / 2), Math.floor(size.y / 2));
+                            ctx.beginPath();
+                            ctx.arc(center.x, center.y, Math.min(center.x, center.y), 0, 2 * Math.PI);
+                            ctx.fillStyle = this.options.fillStyle;
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                    }
+                });
+                var icone_ong=L.canvasIcon({
+                    iconSize: [15, 15],
+                    iconAnchor: [25, 25],
+                    fillStyle: 'rgb(255,218,185)',//blue claire
+                    drawIcon: function (icon, type) {
+                        if (type == 'icon') {
+                            var ctx = icon.getContext('2d');
+                            var size = L.point(this.options.iconSize);
+                            var center = L.point(Math.floor(size.x / 2), Math.floor(size.y / 2));
+                            ctx.beginPath();
+                            ctx.arc(center.x, center.y, Math.min(center.x, center.y), 0, 2 * Math.PI);
+                            ctx.fillStyle = this.options.fillStyle;
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                    }
+                });
+                var icone_prive=L.canvasIcon({
+                    iconSize: [15, 15],
+                    iconAnchor: [25, 25],
+                    fillStyle: 'rgb(255,99,71)',//blue noir
+                    drawIcon: function (icon, type) {
+                        if (type == 'icon') {
+                            var ctx = icon.getContext('2d');
+                            var size = L.point(this.options.iconSize);
+                            var center = L.point(Math.floor(size.x / 2), Math.floor(size.y / 2));
+                            ctx.beginPath();
+                            ctx.arc(center.x, center.y, Math.min(center.x, center.y), 0, 2 * Math.PI);
+                            ctx.fillStyle = this.options.fillStyle;
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                    }
+                });
+
+
             value.forEach(element => {
-                    
                     var latLng = new L.LatLng(element.lattitude, element.longittude);
-                    console.log(element.longittude)
-                        var marker = new L.Marker(latLng, {title: element.region_itervention});
+                    if(element.statut_juridique=='Institution publique'){
+                        
+                        var marker = new L.Marker(latLng, {icon:in_public,title: element.region_itervention});
                         marker.bindPopup("<h5><a href='etablissement/"+element.id+"'> "+element.nom_etablissement+" </a></h5>").openPopup();
                         markersCluster.addLayer(marker);
+                        marker.addTo(mymap)
+
+                    }else if(element.statut_juridique=='GIE'){
+                        var marker = new L.Marker(latLng, {icon:icone_GIE,title: element.region_itervention});
+                        marker.bindPopup("<h5><a href='etablissement/"+element.id+"'> "+element.nom_etablissement+" </a></h5>").openPopup();
+                        markersCluster.addLayer(marker);
+                        marker.addTo(mymap)
+                    }else if(element.statut_juridique=='Association'){
+                        var marker = new L.Marker(latLng, {icon:icone_association,title: element.region_itervention});
+                        marker.bindPopup("<h5><a href='etablissement/"+element.id+"'> "+element.nom_etablissement+" </a></h5>").openPopup();
+                        markersCluster.addLayer(marker);
+                        marker.addTo(mymap)
+                    }
+                    else if(element.statut_juridique=='ONG'){
+                        var marker = new L.Marker(latLng, {icon:icone_ong,title: element.region_itervention});
+                        marker.bindPopup("<h5><a href='etablissement/"+element.id+"'> "+element.nom_etablissement+" </a></h5>").openPopup();
+                        markersCluster.addLayer(marker);
+                        marker.addTo(mymap)
+                    }
+                    else if(element.statut_juridique=='Institution privée'){
+                        var marker = new L.Marker(latLng, {icon:icone_prive,title: element.region_itervention});
+                        marker.bindPopup("<h5><a href='etablissement/"+element.id+"'> "+element.nom_etablissement+" </a></h5>").openPopup();
+                        markersCluster.addLayer(marker);
+                        marker.addTo(mymap)
+                    }
+                    else{
+                        
+                        var marker = new L.Marker(latLng, {icon:icone_autre,title: element.region_itervention});
+                        marker.bindPopup("<h5><a href='etablissement/"+element.id+"'> "+element.nom_etablissement+" </a></h5>").openPopup();
+                        markersCluster.addLayer(marker);
+                        marker.addTo(mymap)
+
+                    }
+                   
+                   
                     // var marker=L.marker([element.lt, element.lg]).addTo(mymap);
                     
                 });
-            mymap.addLayer(markersCluster);
+           // mymap.addLayer(markersCluster);
+           //==================legende======================
+           var legend = L.control({position: 'bottomright',
+            collapsed: false,
+            symbolWidth: 24,
+            opacity: 1,
+            column: 2,
+            });
+
+        legend.onAdd = function (mymap) {
+
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = ['Institution publique', 'GIE', 'Association','ONG','Institution privée','Autres',],
+                labels = ['rgb(34,139,34)','rgb(204,204,0)','rgb(255,255,0)','rgb(255,218,185)','rgb(255,99,71)','rgb(149,19,19)'];
+
+            // loop through our density intervals and generate a label with a colored square for each interval
+            for (var i = 0; i < grades.length; i++) {
+                div.innerHTML +=
+                    '<div class="i-legende"><i style="background:'+labels[i]+'"></i>'+grades[i]+'</div>'
+            }
+
+            return div;
+        };
+
+        legend.addTo(mymap);
         
         
             </script>
         </div>
     
+    <!-- =================Partenaires=============== -->
+    {% include 'partenaire.html' %}
     
-    <!-- start result showcase -->
-    <section class="result-list">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="sec-title mb-3" data-aos="fade-up" data-aos-duration="1000">
-                        <span class="title">Result</span>
-                        <h2>Result Showcase</h2>
-                        <div class="divider">
-                            <span class="fa fa-mortar-board"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="autoplay">
-                        <div class="result_img m-2" data-aos="zoom-in" data-aos-duration="1000">
-                            <img src="assets/images/course_1.png" class="img-fluid" alt="Result">
-                            <div class="overlay"></div>
-                            <div class="overlay-text">
-                                <a href="assets/images/course_1.png" data-fancybox="gallery"><i class="fa fa-plus fa-2x"></i></a>
-                                <h5 class="font-weight-bold">Result</h5>
-                            </div>
-                        </div>
-                        <div class="result_img m-2" data-aos="zoom-in" data-aos-duration="1000">
-                            <img src="assets/images/course_2.png" class="img-fluid" alt="Result">
-                            <div class="overlay"></div>
-                            <div class="overlay-text">
-                                <a href="assets/images/course_2.png" data-fancybox="gallery"><i class="fa fa-plus fa-2x"></i></a>
-                                <h5 class="font-weight-bold">Result</h5>
-                            </div>
-                        </div>
-                        <div class="result_img m-2" data-aos="zoom-in" data-aos-duration="1000">
-                            <img src="assets/images/course_3.png" class="img-fluid" alt="Result">
-                            <div class="overlay"></div>
-                            <div class="overlay-text">
-                                <a href="assets/images/course_3.png" data-fancybox="gallery"><i class="fa fa-plus fa-2x"></i></a>
-                                <h5 class="font-weight-bold">Result</h5>
-                            </div>
-                        </div>
-                        <div class="result_img m-2" data-aos="zoom-in" data-aos-duration="1000">
-                            <img src="assets/images/course_4.png" class="img-fluid" alt="Result">
-                            <div class="overlay"></div>
-                            <div class="overlay-text">
-                                <a href="assets/images/course_4.png" data-fancybox="gallery"><i class="fa fa-plus fa-2x"></i></a>
-                                <h5 class="font-weight-bold">Result</h5>
-                            </div>
-                        </div>
-                        <div class="result_img m-2" data-aos="zoom-in" data-aos-duration="1000">
-                            <img src="assets/images/course_4.png" class="img-fluid" alt="Result">
-                            <div class="overlay"></div>
-                            <div class="overlay-text">
-                                <a href="assets/images/course_4.png" data-fancybox="gallery"><i class="fa fa-plus fa-2x"></i></a>
-                                <h5 class="font-weight-bold">Result</h5>
-                            </div>
-                        </div>
-                        <div class="result_img m-2" data-aos="zoom-in" data-aos-duration="1000">
-                            <img src="assets/images/course_5.png" class="img-fluid" alt="Result">
-                            <div class="overlay"></div>
-                            <div class="overlay-text">
-                                <a href="assets/images/course_5.png" data-fancybox="gallery"><i class="fa fa-plus fa-2x"></i></a>
-                                <h5 class="font-weight-bold">Result</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- end result showcase -->
     {% endblock %}
 

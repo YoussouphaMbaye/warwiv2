@@ -728,7 +728,7 @@ a.right-btn:after {
     padding: 1.6rem;
 }
 .online-course img {
-    width: 75px;
+   
 }
 
 /*13. Video faq*/
@@ -922,7 +922,7 @@ a.right-btn:after {
     padding: 50px 0;
 }
 .joinus-content {
-    padding: 3rem;
+    padding: 2.7rem;
     margin-top: -40px;
 }
 .joinus-content .read-more {
@@ -1919,6 +1919,7 @@ li {
 /* =====================my css=========================== */
 .a-carte{
     background: url("../mesimages/carto2.jpg");
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1940,6 +1941,24 @@ li {
 .attribut{
     font-weight: bold;
     color:grey;
+}
+
+.regular-checkbox {
+	-webkit-appearance: radio;
+	background-color: orangered;
+	
+}
+.partenaires-container{
+    display: flex;
+    justify-content: center;
+}
+.partenaire-item{
+    /* width: 180px; */
+    cursor: pointer;
+}
+.i-legende{
+    width:100%;
+    margin-bottom: 5px;
 }
 
 

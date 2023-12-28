@@ -3,9 +3,10 @@ from .models import Etablissement,Formation,Employer, Formation_modulaire
 class EtablissemntsFilter(django_filters.FilterSet):
     # statut_proj= django_filters.CharFilter(field_name='ong__statut_proj', lookup_expr='iexact')
     #sect_iintervention=django_filters.CharFilter(lookup_expr='icontains')
+    
     class Meta:
         model = Etablissement
-        fields = ['region','departement','commune']
+        fields = ['region','departement','commune','statut_juridique']
 
 
 class FormationFilter(django_filters.FilterSet):

@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'assets/mesimages/logo_warwi.png' %}" />
+    <title>Warwi</title>
+    <style>
+        .content-404 h1{
+            font-size: 60px;
+        }
+        .content-404{
+            padding-top: 60px;
+            margin: 0 auto;
+            width: 50%;
+            
+            text-align: center;
+        }
+        .btn-404{
+            background: #1f8fed;
+            border: 1px solid orangered;
+            border-radius: 5px 5px 5px 5px;
+            font-size: bold;
+            text-decoration: none;
+            padding: 10px;
+            color: white;
+            margin-top: 10px;
+            display: block;
+            width: 180px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    {% block content %}
+    
+    <div class="content-404">
+        <h1>404</h1>
+        <h3>Page introuvable</h3>
+        <p>Désolé la page que vous demandez n'est pas disponible! </p>
+        <a href="{% url 'accueil'%}" class='btn-404'>Aller à la page d'accueil</a>
+    </div>
+
+    {% endblock %}
+</body>
+</html>

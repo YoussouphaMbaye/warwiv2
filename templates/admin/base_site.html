@@ -1,8 +1,11 @@
 {% extends 'admin/base.html' %}
 {% load static %}
+{% block extrahead %}
+        <link rel="icon" type="image/png" href="{% static 'assets/mesimages/logo_warwi.png' %}"/>
+    {% endblock %}
 {% block branding %}
         <h1 id="head">
-            <img src="{% static '/assets/mesimages/drapeau_senegal.jpg'%}" alt="logo" width="50px"/>
-            FAR
+            <img src="{% static '/assets/mesimages/logo_warwi.png'%}" alt="logo" width="120px"/>
+            
         </h1>
 {% endblock %}

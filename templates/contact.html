@@ -7,6 +7,12 @@
 <!-- end inner-banner -->
 <!-- start contact -->
 <section class="contact-section">
+    <div class="d-flex flex-column  w-100 align-items-center" > 
+        <h1>Merci {{e_nom}}!</h1>
+        <p>votre message a bien été reçu et sera traiter</p>
+        
+    </div>
+    {% if not message %}
     <div class="container">
         <div class="sec-title text-center mb-3" data-aos="fade-up" data-aos-duration="1000">
             <span class="title">Contact</span>
@@ -20,32 +26,34 @@
                 <div class="contact-form p-5" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="border-line"></div>
                     <h3 class="font-weight-bold color-orange">Poster Un Message</h3>
-                    <form method="POST" action="">
+                    
+                    <form method="POST" action="send_email">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="nom">Votre nom</label>
-                            <input class="form-control" id="nom" placeholder="Nom complet" type="text" name="nom" required>
+                            <input class="form-control" id="nom" placeholder="Nom complet" type="text" name="email_nom" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Votre adresse de courriel</label>
                             <input class="form-control" id="email"
-                                   placeholder="Email" type="email" name="email" required>
+                                   placeholder="Email" type="email" name="email_email" required>
                             <small class="form-text text-muted" id="emailHelp">We'll never share your email with anyone
                                 else.
                             </small>
                         </div>
                         <div class="form-group">
                             <label for="objet">Objet</label>
-                            <input  class="form-control" id="objet" name="objet"
+                            <input  class="form-control" id="objet" name="email_objet"
                                     placeholder="Objet" type="text" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" maxlength="300" class="form-control" name="message"></textarea>
+                            <textarea id="message" maxlength="300" class="form-control" name="email_message"></textarea>
                         </div>
                         
                         <button class="btn theme-orange border-0 mt-4" type="submit">Envoyer un Message</button>
                     </form>
+                    
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 ml-minus">
@@ -75,6 +83,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </section>
 <!-- end contact -->
 <!-- start map -->

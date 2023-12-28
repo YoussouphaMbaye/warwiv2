@@ -2,7 +2,13 @@
 from django.urls import path
 from . import views 
 from .admin import admin_site
-
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import (
+handler400, handler403, handler404, handler500
+)
 
 urlpatterns = [
     path('', views.home,name='accueil'),
@@ -18,9 +24,16 @@ urlpatterns = [
     path('cartographie', views.cartographie,name='cartographie'),
     path('actualite', views.actualite,name='actualite'),
     path('contact', views.contact,name='contact'),
+    path('send_email', views.send_email,name='send_email'),
+    path('aPropos', views.a_propos,name='apropos'),
+    path('demande', views.demande,name='demader'),
     path('detailsActualite/<int:id>', views.detailsActualite,name='detailsActualite'),
 
     path('export', views.export_csv,name='export'),
+    path('plaquette',views.plaquettePDF,name='plaquettePDF'),
+    #path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico')))
 
 
 ]
+handler404 = 'app.views.error_404'
+handler500 = 'app.views.error_500'
